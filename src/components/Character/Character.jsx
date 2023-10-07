@@ -7,7 +7,12 @@ import Skills from "./Skills";
 import { SKILL_LIST } from "../../consts";
 import "./Character.styles.scss";
 
-export default function Character({ stats, updateCharacters, setResult }) {
+export default function Character({
+  index,
+  stats,
+  updateCharacters,
+  setResult,
+}) {
   const [selectedClass, setSelectedClass] = React.useState(null);
   const [modifiers, setModifiers] = React.useState({});
   const [skills, setSkills] = React.useState(
@@ -35,14 +40,14 @@ export default function Character({ stats, updateCharacters, setResult }) {
 
   return (
     <div className="wrapper">
-      <h2>Character: {stats.id}</h2>
+      <h2>Character: {index}</h2>
       <div
         className={`container ${
           selectedClass ? "four-columns" : "three-columns"
         }`}
       >
         <SkillCheck
-          stats={stats}
+          index={index}
           skills={skills}
           modifiers={modifiers}
           setResult={setResult}

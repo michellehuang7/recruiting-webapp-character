@@ -6,7 +6,7 @@ export default function ClassInfo({ selected, setSelected }) {
   const info = CLASS_LIST[selected];
   return (
     <div className="class-info">
-      <h3>Class Info</h3>
+      <h3>{selected} Minimum Requirements</h3>
       {Object.entries(info).map(([key, value]) => {
         return (
           <div key={key}>

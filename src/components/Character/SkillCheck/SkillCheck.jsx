@@ -2,7 +2,7 @@ import React from "react";
 import { SKILL_LIST } from "../../../consts";
 import "./SkillCheck.styles.scss";
 
-export default function SkillCheck({ stats, skills, modifiers, setResult }) {
+export default function SkillCheck({ index, skills, modifiers, setResult }) {
   const [selectedSkill, setSelectedSkill] = React.useState(SKILL_LIST[0].name);
   const [dc, setDc] = React.useState(0);
 
@@ -11,7 +11,7 @@ export default function SkillCheck({ stats, skills, modifiers, setResult }) {
 
   const roll = () => {
     setResult({
-      id: stats.id,
+      id: index,
       skill: selectedSkill,
       val: skills[selectedSkill] + modifiers[getAttribute(selectedSkill)],
       rolled: Math.floor(Math.random() * dc),
