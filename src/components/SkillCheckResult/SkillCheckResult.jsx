@@ -5,10 +5,15 @@ export default function SkillCheckResult({ result }) {
       <h2>Skill Check Results</h2>
       <div className="skill-check-result--info">
         <div>Character: {result.id}</div>
-        <div>Skill: {result.val}</div>
+        <div>
+          Skill: {result.skill} : {result.val}
+        </div>
         <div>You Rolled: {result.rolled}</div>
         <div>The DC was: {result.dc}</div>
-        <div>The DC was: {result.res}</div>
+        <div>
+          Result:
+          {result.rolled + result.val >= result.dc ? "Successfull" : "Failure"}
+        </div>
       </div>
     </div>
   );

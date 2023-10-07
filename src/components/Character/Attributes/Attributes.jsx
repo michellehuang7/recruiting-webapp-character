@@ -4,9 +4,12 @@ import "./Attributes.styles.scss";
 const MAX_ATTR_PTS = 70;
 
 export default function Attributes({ stats, setStats, modifiers }) {
-  const totalScore =
-    Object.values(stats).reduce((acc, value) => acc + value, 0) - stats.id;
-
+  let totalScore = 0;
+  for (let key in stats) {
+    if (key !== "id" && typeof stats[key] === "number") {
+      totalScore += stats[key];
+    }
+  }
   const skillUp = (key) => {
     const newVal = stats[key] + 1;
     setStats((prev) =>

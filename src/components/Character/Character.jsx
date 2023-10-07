@@ -4,11 +4,18 @@ import Attributes from "./Attributes";
 import Classes from "./Classes";
 import ClassInfo from "./ClassInfo";
 import Skills from "./Skills";
+import { SKILL_LIST } from "../../consts";
 import "./Character.styles.scss";
 
-export default function Character({ stats, updateCharacters }) {
+export default function Character({ stats, updateCharacters, setResult }) {
   const [selectedClass, setSelectedClass] = React.useState(null);
   const [modifiers, setModifiers] = React.useState({});
+  const [skills, setSkills] = React.useState(
+    SKILL_LIST.reduce((acc, obj) => {
+      acc[obj.name] = 0;
+      return acc;
+    }, {})
+  );
 
   const getModifier = (key) => {
     return stats[key] < 10
@@ -34,7 +41,12 @@ export default function Character({ stats, updateCharacters }) {
           selectedClass ? "four-columns" : "three-columns"
         }`}
       >
-        <SkillCheck />
+        <SkillCheck
+          stats={stats}
+          skills={skills}
+          modifiers={modifiers}
+          setResult={setResult}
+        />
         <Attributes
           stats={stats}
           setStats={updateCharacters}
@@ -44,7 +56,12 @@ export default function Character({ stats, updateCharacters }) {
         {selectedClass && (
           <ClassInfo selected={selectedClass} setSelected={setSelectedClass} />
         )}
-        <Skills />
+        <Skills
+          stats={stats}
+          modifiers={modifiers}
+          skills={skills}
+          setSkills={setSkills}
+        />
       </div>
     </div>
   );

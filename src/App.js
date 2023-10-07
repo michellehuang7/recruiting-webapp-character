@@ -4,16 +4,10 @@ import Character from "./components/Character";
 import "./App.css";
 
 function App() {
-  const [result, setResult] = useState({
-    id: 0,
-    val: 1,
-    rolled: 0,
-    dc: 0,
-    res: "failed",
-  });
+  const [result, setResult] = useState({});
   const [characters, setCharacters] = useState([
     {
-      id: 0,
+      id: 1,
       Strength: 10,
       Dexterity: 10,
       Constitution: 10,
@@ -22,7 +16,7 @@ function App() {
       Charisma: 10,
     },
     {
-      id: 1,
+      id: 2,
       Strength: 10,
       Dexterity: 10,
       Constitution: 10,
@@ -42,13 +36,14 @@ function App() {
           <button>Reset All Characters</button>
           <button>Save All Characters</button>
         </div>
-        <SkillCheckResult result={result} />
+        {result.id && <SkillCheckResult result={result} />}
         {characters.map((char) => {
           return (
             <Character
               key={char.id}
               stats={char}
               updateCharacters={setCharacters}
+              setResult={setResult}
             />
           );
         })}
