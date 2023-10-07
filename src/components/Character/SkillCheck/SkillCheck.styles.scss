@@ -1,7 +1,18 @@
 .skill-check {
   margin: 0 20px;
   grid-row: 1/2;
-  grid-column: 1/5;
   border: 1px solid white;
   border-radius: 12px;
+}
+
+.three-columns {
+  .skill-check {
+    grid-column: 1/4;
+  }
+}
+
+.four-columns {
+  .skill-check {
+    grid-column: 1/5;
+  }
 }

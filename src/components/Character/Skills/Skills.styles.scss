@@ -5,3 +5,15 @@
   border-radius: 12px;
   padding-bottom: 20px;
 }
+
+.three-columns {
+  .skills {
+    grid-column: 3;
+  }
+}
+
+.four-columns {
+  .skills {
+    grid-column: 4;
+  }
+}
