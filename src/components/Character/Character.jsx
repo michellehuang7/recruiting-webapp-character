@@ -6,9 +6,26 @@ import ClassInfo from "./ClassInfo";
 import Skills from "./Skills";
 import "./Character.styles.scss";
 
-export default function Character({ stats }) {
+export default function Character({ stats, updateCharacters }) {
   const [selectedClass, setSelectedClass] = React.useState(null);
-  console.log(selectedClass);
+  const [modifiers, setModifiers] = React.useState({});
+
+  const getModifier = (key) => {
+    return stats[key] < 10
+      ? stats[key] - 10
+      : Math.floor((stats[key] - 10) / 2);
+  };
+
+  React.useEffect(() => {
+    const mdf = Object.entries(stats)
+      .filter(([key, _]) => key !== "id")
+      .reduce((acc, [key, _]) => {
+        acc[key] = getModifier(key);
+        return acc;
+      }, {});
+    setModifiers(mdf);
+  }, [stats]);
+
   return (
     <div className="wrapper">
       <h2>Character: {stats.id}</h2>
@@ -18,8 +35,12 @@ export default function Character({ stats }) {
         }`}
       >
         <SkillCheck />
-        <Attributes />
-        <Classes setSelectedClass={setSelectedClass} />
+        <Attributes
+          stats={stats}
+          setStats={updateCharacters}
+          modifiers={modifiers}
+        />
+        <Classes stats={stats} setSelectedClass={setSelectedClass} />
         {selectedClass && (
           <ClassInfo selected={selectedClass} setSelected={setSelectedClass} />
         )}

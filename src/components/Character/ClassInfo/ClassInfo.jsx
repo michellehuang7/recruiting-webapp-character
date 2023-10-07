@@ -9,7 +9,7 @@ export default function ClassInfo({ selected, setSelected }) {
       <h3>Class Info</h3>
       {Object.entries(info).map(([key, value]) => {
         return (
-          <div>
+          <div key={key}>
             <span>
               {key}:{value}
             </span>

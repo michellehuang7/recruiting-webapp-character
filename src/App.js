@@ -44,7 +44,13 @@ function App() {
         </div>
         <SkillCheckResult result={result} />
         {characters.map((char) => {
-          return <Character key={char.id} stats={char} />;
+          return (
+            <Character
+              key={char.id}
+              stats={char}
+              updateCharacters={setCharacters}
+            />
+          );
         })}
       </section>
     </div>
