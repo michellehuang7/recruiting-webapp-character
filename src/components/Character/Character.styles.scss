@@ -1,0 +1,15 @@
+.wrapper {
+  margin: 20px;
+  border: 1px solid white;
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+
+.container {
+  display: grid;
+  margin: 0 auto;
+  grid-column-gap: 10px;
+  grid-template-columns: auto 200px auto;
+  grid-auto-rows: minmax(100px, auto);
+  margin-bottom: 10px;
+}
